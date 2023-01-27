@@ -18,7 +18,7 @@ jobs:
 
         # Install Python Dependencies
       - name: Install dependencies
-        run: pip install pytest
+        run: pip install requests pytest
 
         # Run Application Tests
       - name: Run unit tests
