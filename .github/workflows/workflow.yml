@@ -11,6 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+        # Run application
+      - uses: isbang/compose-action@v1.4.1
+
       - name: Set up Python 3.9
         uses: actions/setup-python@v4
         with:
@@ -18,11 +21,11 @@ jobs:
 
         # Install Python Dependencies
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install requests pytest
 
-        # Build App and Run Application Test
-      - name: Build Application and Run unit Test
-        run: python main.py & pytest
+        # Run Application Test
+      - name: Run integration tests
+        run: pytest
 
   continuous-deployment:
     runs-on: ubuntu-latest
