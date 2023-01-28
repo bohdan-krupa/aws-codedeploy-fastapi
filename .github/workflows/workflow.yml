@@ -18,11 +18,11 @@ jobs:
 
         # Install Python Dependencies
       - name: Install dependencies
-        run: pip install requests pytest
+        run: pip install -r requirements.txt
 
-        # Run Application Tests
-      - name: Run unit tests
-        run: pytest
+        # Build App and Run Application Test
+      - name: Build Application and Run unit Test
+        run: python main.py & pytest
 
   continuous-deployment:
     runs-on: ubuntu-latest
