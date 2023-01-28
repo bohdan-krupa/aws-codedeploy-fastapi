@@ -9,6 +9,10 @@ hooks:
    - location: scripts/delete_app
      timeout: 300
      runas: root
+  AfterInstall:
+   - location: scripts/create_env_file
+     timeout: 300
+     runas: root
   ApplicationStart:
    - location: scripts/start_server
      timeout: 300
