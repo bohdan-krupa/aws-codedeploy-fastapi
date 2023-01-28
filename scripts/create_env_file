@@ -1,5 +1,6 @@
 #!/bin/bash
 
+cd /home/ec2-user/app
 touch .env
 echo DB_USER=${{ secrets.DB_USER }} >> .env
 echo DB_PASSWORD=${{ secrets.DB_PASSWORD }} >> .env
