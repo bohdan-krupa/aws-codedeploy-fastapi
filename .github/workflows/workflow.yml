@@ -11,28 +11,26 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: 'Create env file'
+        run: |
+          touch .env
+          echo DB_USER=${{ secrets.DB_USER }} >> .env
+          echo DB_PASSWORD=${{ secrets.DB_PASSWORD }} >> .env
+          echo DB_NAME=${{ secrets.DB_NAME }} >> .env
+          echo DB_HOST=${{ secrets.DB_HOST }} >> .env
+          echo DB_PORT=${{ secrets.DB_PORT }} >> .env
+
       - name: Run Application
         run: docker-compose up -d
-
-        # Run application
-      # - uses: isbang/compose-action@v1.4.1
-      #   env:
-      #     DB_USER: ${{ secrets.DB_USER }}
-      #     DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-      #     DB_NAME: ${{ secrets.DB_NAME }}
-      #     DB_HOST: ${{ secrets.DB_HOST }}
-      #     DB_PORT: ${{ secrets.DB_PORT }}
 
       - name: Set up Python 3.9
         uses: actions/setup-python@v4
         with:
           python-version: 3.9
 
-        # Install Python Dependencies
       - name: Install dependencies
         run: pip install requests pytest
 
-        # Run Application Test
       - name: Run integration tests
         run: pytest
 
